@@ -49,11 +49,11 @@ Upload braken report file at [Pavian](https://fbreitwieser.shinyapps.io/pavian/)
 
 Here is an example depicting the results obtained from Pavian. The table shows the comparison between different samples (uploaded as the `_bracken_species.report`) for the number of reads assigned to different taxa, can be sorted as per the required hierarchy.
 
-<img src='images/paven_comparison.png' width='350'>
+<img src='images/paven_comparison.png' width='1000'>
 
 Another result obtained is Sankey plot to show the overview of each sample for all taxonomic hierarchy.
 
-<img src='paven_sankey.png' width='1000'>
+<img src='images/pavian-sankey.png' width='1000'>
 
 Here is an example, highlighting the steps involved in calculating the genome copies for each assigned taxa. To do so, in the beginning, a mixture containing an even copy number of genomic DNA from the three tagged strains [ATCC® MSA-1014™](https://www.atcc.org/products/msa-1014) was spiked in with the soil microaggregate sample. After that, Illumina sequencing reads were produced for the spiked-in sample.
 The reads were then processed with the aforementioned kraken code and Pavian software.
@@ -71,7 +71,7 @@ N = SP × TB/TR × GR/GB
 
 `SP` is the calculated genome copy of the spiked-in tag = Volume of spike-in tag added in sample(µL) × 6x10⁷/55
 
-**To get the `TR`, have to run bowtie2 to generate sam file and then get the reads assigned to Escherichia, Clostridium, and Staphylococcus and sum it:
+`TR` - run bowtie2 to generate sam file and then get the reads assigned to Escherichia, Clostridium, and Staphylococcus and sum it:
 ```
 while IFS=" " read -r line1 line2; do bowtie2 -x ../../../yong_kraken/kraken2_result/quantitative_analysis/tagged_bact -1 $line1 -2 $line2 -S /media/mohini/Elements/absolute_quantity/vlad/QUO1008570/$(basename "$line1" | cut -d'_' -f1,2).sam --threads 20 ; done < in_files
 ```
@@ -84,7 +84,7 @@ samtools view -F 8 10F_S102.sam |grep -c 'Staphylococcus'
 
 `GR` is the number of reads assigned to each hierarchy obtained from bracken report from pavian comparison table.
 
-**To calculate GB**
+`GB` - Use python script mentioned below to fetch genome size of each taxa listed in the pavian comparison table
 ```
 python scripts/genome_size.py in_file out_file
 ```
