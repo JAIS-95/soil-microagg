@@ -90,3 +90,15 @@ python scripts/genome_size.py in_file out_file
 ```
 where in_file is the list of taxonomic Ids
 
+## Gephi visualization
+For analyzing microbial communites, gephi can be used. First, a python script would help to generate `.gml` file from the bracken report file.
+```
+python network.py bracken_report_folder out.gml
+```
+bracken_report_folder is needed to be replaced by the folder path having bracken report file.
+
+Here is an example network plot for Acidobacteria community lies in the studied soil sample, after filtering bracken report files for Acidobacteria species:
+<img src='images/acido_network.png' width='1000'>
+
+# Contact
+For any questions, feel free to reach out: m.jaiswal@northeastern.edu
