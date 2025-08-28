@@ -3,7 +3,7 @@ import pandas as pd
 import networkx as nx 
 
 bracken_folder = sys.argv[1]
-out_file = sys.argv[2]
+out_file = sys.argv[2]       ##should be .gml format
 
 # Function to read Bracken file from the given input bracken folder
 def read_bracken(file): 
